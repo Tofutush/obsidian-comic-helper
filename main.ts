@@ -192,7 +192,7 @@ ${color}
 			new Notice('oops, current file does not exist');
 			return;
 		}
-		this.app.vault.append(this.app.workspace.getActiveFile(), `\n\nnext: [[${file.basename}]]`);
+		this.app.vault.append(this.app.workspace.getActiveFile() as TFile, `\n\nnext: [[${file.basename}]]`);
 		new Notice(`added link from "${this.app.workspace.getActiveFile()?.basename}" to "${file.basename}"`)
 	}
 }
@@ -278,7 +278,7 @@ class NewEpisodeModal extends Modal {
 	status: string;
 	transcript: string;
 	onSubmit: (title: string, no: number, chapter: number, date: string, pages: number, status: string, transcript: string) => void;
-	months = {'01': 31, '02': 28, '03': 31, '04': 30, '05': 31, '06': 30, '07': 31, '08': 31, '09': 30, '10': 31, '11': 30, '12': 31};
+	months: number[] = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 	constructor(app: App, plugin: ComicPlugin, onSubmit: (title: string, no: number, chapter: number, date: string, pages: number, status: string, transcript: string) => void) {
 		super(app);
@@ -395,21 +395,22 @@ class NewEpisodeModal extends Modal {
 	}
 	increaseDate(date: string, add: number) {
 		let day = parseInt(date.slice(8, 10));
-		let month = date.slice(5, 7);
+		let strMonth = date.slice(5, 7);
+		let month = parseInt(strMonth);
 		let year = parseInt(date.slice(0, 4));
 		// console.log(day, month);
 		day += add;
 		let daysInMonth = this.months[month];
-		if(month == '02' && this.isLeap(year)) daysInMonth = 29;
+		if(month == 2 && this.isLeap(year)) daysInMonth = 29;
 		if(day > daysInMonth) {
 			day -= daysInMonth;
-			let intMonth = parseInt(month) + 1;
-			if(intMonth > 12) {
-				intMonth = 1;
+			month++;
+			if(month > 12) {
+				month = 1;
 				year++;
 			}
-			month = intMonth.toString();
-			if(month.length == 1) month = '0' + month;
+			strMonth = month.toString();
+			if(strMonth.length == 1) strMonth = '0' + strMonth;
 		}
 		let strDay = day.toString();
 		if(strDay.length == 1) strDay = '0' + strDay;
