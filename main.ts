@@ -164,6 +164,7 @@ weapon: ${weapon}
 \`\`\`palette
 ${color}
 #2e2e2e
+{"aliases": ["accent", "hair"]}
 \`\`\`
 
 ## aura
@@ -174,7 +175,11 @@ ${color}
 
 ## bad traits
 
-## quirks`);
+## quirks
+
+## history
+
+## relationships`);
 				this.app.workspace.getLeaf().openFile(await newCharacter);
 			}).open();
 		});
@@ -508,6 +513,7 @@ class NewCharacterModal extends Modal {
 		new Setting(contentEl)
 			.setName('color')
 			.addColorPicker(cp => {
+				this.color = '#000000';
 				cp.onChange(value => {
 					this.color = value;
 				});

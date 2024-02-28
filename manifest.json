@@ -1,7 +1,7 @@
 {
 	"id": "comic",
 	"name": "Comic",
-	"version": "1.0.1",
+	"version": "1.0.3",
 	"minAppVersion": "0.15.0",
 	"description": "Personal plugin for my comic project.",
 	"author": "Tofutush",
