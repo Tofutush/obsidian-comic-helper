@@ -120,33 +120,33 @@ ${transcript}`);
 		});
 		container.insertBefore(newEpisodeBtn, container.firstChild);
 
-		// add prev event button
-		let prevEventBtn = createEl('div');
-		setIcon(prevEventBtn, 'corner-down-left');
-		prevEventBtn.className = 'clickable-icon nav-action-button prev-event-button';
-		prevEventBtn.setAttribute('aria-label', 'Connect previous event');
-		this.registerDomEvent(prevEventBtn, 'click', () => {
-			if(this.app.workspace.getActiveFile()?.path.includes(this.settings.plotFolder)) {
-				new PrevEventModal(this.app, this, this.addPrevEvent).open();
-			} else {
-				new Notice('only create plot links for EVENTS, stupid!');
-			}
-		});
-		container.insertBefore(prevEventBtn, container.lastChild);
+		// // add prev event button
+		// let prevEventBtn = createEl('div');
+		// setIcon(prevEventBtn, 'corner-down-left');
+		// prevEventBtn.className = 'clickable-icon nav-action-button prev-event-button';
+		// prevEventBtn.setAttribute('aria-label', 'Connect previous event');
+		// this.registerDomEvent(prevEventBtn, 'click', () => {
+		// 	if(this.app.workspace.getActiveFile()?.path.includes(this.settings.plotFolder)) {
+		// 		new PrevEventModal(this.app, this, this.addPrevEvent).open();
+		// 	} else {
+		// 		new Notice('only create plot links for EVENTS, stupid!');
+		// 	}
+		// });
+		// container.insertBefore(prevEventBtn, container.lastChild);
 
-		// add next event button
-		let nextEventBtn = createEl('div');
-		setIcon(nextEventBtn, 'corner-up-right');
-		nextEventBtn.className = 'clickable-icon nav-action-button next-event-button';
-		nextEventBtn.setAttribute('aria-label', 'Connect next event');
-		this.registerDomEvent(nextEventBtn, 'click', () => {
-			if(this.app.workspace.getActiveFile()?.path.includes(this.settings.plotFolder)) {
-				new NextEventModal(this.app, this, this.addNextEvent).open();
-			} else {
-				new Notice('only create plot links for EVENTS, stupid!');
-			}
-		});
-		container.insertBefore(nextEventBtn, container.lastChild);
+		// // add next event button
+		// let nextEventBtn = createEl('div');
+		// setIcon(nextEventBtn, 'corner-up-right');
+		// nextEventBtn.className = 'clickable-icon nav-action-button next-event-button';
+		// nextEventBtn.setAttribute('aria-label', 'Connect next event');
+		// this.registerDomEvent(nextEventBtn, 'click', () => {
+		// 	if(this.app.workspace.getActiveFile()?.path.includes(this.settings.plotFolder)) {
+		// 		new NextEventModal(this.app, this, this.addNextEvent).open();
+		// 	} else {
+		// 		new Notice('only create plot links for EVENTS, stupid!');
+		// 	}
+		// });
+		// container.insertBefore(nextEventBtn, container.lastChild);
 
 		// add new character button
 		let newChBtn = createEl('div');
@@ -183,7 +183,7 @@ ${color}
 				this.app.workspace.getLeaf().openFile(await newCharacter);
 			}).open();
 		});
-		container.insertBefore(newChBtn, container.lastChild);
+		container.insertAfter(newChBtn, newEpisodeBtn);
 		container.classList.add('comic-helper-changed');
 	}
 
